@@ -9,7 +9,7 @@ auto InputManager::bindHotkeys() -> void {
   static double frequency = 48000.0;
   static double volume = 0.0;
 
-  hotkeys.append(InputHotkey("Toggle Fullscreen").onPress([] {
+  hotkeys.append(InputHotkey("切换全屏").onPress([] {
     program.toggleVideoFullScreen();
   }));
 
