@@ -83,7 +83,7 @@ auto SuperFamicom::manifest() const -> string {
       //Tengai Maykou Zero (fan translation)
       output.append(Memory{}.type("ROM").size(0x100000).content("Program").text());
       output.append(Memory{}.type("ROM").size(0x500000).content("Data").text());
-      output.append(Memory{}.type("ROM").size(0x100000).content("Expansion").text());
+      output.append(Memory{}.type("ROM").size(0x100000).content("扩展").text());
     } else {
       output.append(Memory{}.type("ROM").size(size).content("Program").text());
     }

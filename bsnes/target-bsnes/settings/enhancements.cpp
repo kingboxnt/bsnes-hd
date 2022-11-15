@@ -2,7 +2,7 @@ auto EnhancementSettings::create() -> void {
   setCollapsible();
   setVisible(false);
 
-  runAheadLabel.setText("Run-Ahead").setFont(Font().setBold());
+  runAheadLabel.setText("提前运行").setFont(Font().setBold());
   runAhead0.setText("Disabled").onActivate([&] {
     settings.emulator.runAhead.frames = 0;
   });

@@ -1,9 +1,9 @@
 auto CheatDatabase::create() -> void {
   layout.setPadding(5_sx);
-  selectAllButton.setText("Select All").onActivate([&] {
+  selectAllButton.setText("选择所有").onActivate([&] {
     for(auto item : cheatList.items()) item.setChecked(true);
   });
-  unselectAllButton.setText("Unselect All").onActivate([&] {
+  unselectAllButton.setText("取消所有").onActivate([&] {
     for(auto item : cheatList.items()) item.setChecked(false);
   });
   addCheatsButton.setText("Add Cheats").onActivate([&] {
@@ -207,7 +207,7 @@ auto CheatEditor::create() -> void {
 auto CheatEditor::refresh() -> void {
   cheatList.reset();
   cheatList.append(TableViewColumn());
-  cheatList.append(TableViewColumn().setText("Name").setSorting(Sort::Ascending).setExpandable());
+  cheatList.append(TableViewColumn().setText("名称").setSorting(Sort::Ascending).setExpandable());
   for(auto& cheat : cheats) {
     TableViewItem item{&cheatList};
     item.append(TableViewCell().setCheckable().setChecked(cheat.enable));

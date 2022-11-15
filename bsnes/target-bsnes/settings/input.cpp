@@ -2,19 +2,19 @@ auto InputSettings::create() -> void {
   setCollapsible();
   setVisible(false);
 
-  inputFocusLabel.setText("When focus is lost:");
+  inputFocusLabel.setText("当位于后台时:");
   pauseEmulation.setText("Pause emulation").onActivate([&] {
-    settings.input.defocus = "Pause";
+    settings.input.defocus = "暂停";
   });
-  blockInput.setText("Block input").onActivate([&] {
-    settings.input.defocus = "Block";
+  blockInput.setText("阻止输入").onActivate([&] {
+    settings.input.defocus = "阻止";
   });
-  allowInput.setText("Allow input").onActivate([&] {
-    settings.input.defocus = "Allow";
+  allowInput.setText("允许输入").onActivate([&] {
+    settings.input.defocus = "允许";
   });
-  if(settings.input.defocus == "Pause") pauseEmulation.setChecked();
-  if(settings.input.defocus == "Block") blockInput.setChecked();
-  if(settings.input.defocus == "Allow") allowInput.setChecked();
+  if(settings.input.defocus == "暂停") pauseEmulation.setChecked();
+  if(settings.input.defocus == "阻止") blockInput.setChecked();
+  if(settings.input.defocus == "允许") allowInput.setChecked();
   separator.setColor({192, 192, 192});
 
   portLabel.setText("Port:");
@@ -44,11 +44,11 @@ auto InputSettings::create() -> void {
   assignMouse1.onActivate([&] { assignMouseInput(0); });
   assignMouse2.onActivate([&] { assignMouseInput(1); });
   assignMouse3.onActivate([&] { assignMouseInput(2); });
-  assignButton.setText("Assign").onActivate([&] {
+  assignButton.setText("分配").onActivate([&] {
     clearButton.doActivate();
     assignMapping(mappingList.selected().cell(0));
   });
-  clearButton.setText("Clear").onActivate([&] {
+  clearButton.setText("清除").onActivate([&] {
     cancelMapping();
     for(auto mapping : mappingList.batched()) {
       for(uint index : range(BindingLimit)) {
@@ -114,9 +114,9 @@ auto InputSettings::reloadDevices() -> void {
 
 auto InputSettings::reloadMappings() -> void {
   mappingList.reset();
-  mappingList.append(TableViewColumn().setText("Name"));
+  mappingList.append(TableViewColumn().setText("名称"));
   for(uint n : range(BindingLimit)) {
-    mappingList.append(TableViewColumn().setText({"Mapping #", 1 + n}).setExpandable());
+    mappingList.append(TableViewColumn().setText({"映射 #", 1 + n}).setExpandable());
   }
   for(auto& mapping : activeDevice().mappings) {
     TableViewItem item{&mappingList};
@@ -148,8 +148,8 @@ auto InputSettings::assignMapping(TableViewCell cell) -> void {
   for(auto mapping : mappingList.batched()) {
     activeMapping = activeDevice().mappings[mapping.offset()];
     activeBinding = max(0, (int)cell.offset() - 1);
-    mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText("(assign ...)");
-    settingsWindow.statusBar.setText({"Press a key or button for mapping #", 1 + activeBinding, " [", activeMapping->name, "] ..."});
+    mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText("(指定 ...)");
+    settingsWindow.statusBar.setText({"按下按键或按钮进行映射 #", 1 + activeBinding, " [", activeMapping->name, "] ..."});
     settingsWindow.setDismissable(false);
     updateControls();
     Application::processEvents();

@@ -22,24 +22,24 @@ auto Presentation::create() -> void {
   quit.setIcon(Icon::Action::Quit).setText(tr("Quit")).onActivate([&] { program.quit(); });
 
   settingsMenu.setText(tr("Settings"));
-  sizeMenu.setIcon(Icon::Emblem::Image).setText("Size");
+  sizeMenu.setIcon(Icon::Emblem::Image).setText("大小");
   updateSizeMenu();
-  outputMenu.setIcon(Icon::Emblem::Image).setText("Output");
-  centerViewport.setText("Center").onActivate([&] {
-    settings.video.output = "Center";
+  outputMenu.setIcon(Icon::Emblem::Image).setText("输出");
+  centerViewport.setText("居中").onActivate([&] {
+    settings.video.output = "居中";
     video.clear();
   });
-  scaleViewport.setText("Scale").onActivate([&] {
-    settings.video.output = "Scale";
+  scaleViewport.setText("缩放").onActivate([&] {
+    settings.video.output = "缩放";
     video.clear();
   });
-  stretchViewport.setText("Stretch").onActivate([&] {
-    settings.video.output = "Stretch";
+  stretchViewport.setText("拉伸").onActivate([&] {
+    settings.video.output = "拉伸";
     video.clear();
   });
-  if(settings.video.output == "Center") centerViewport.setChecked();
-  if(settings.video.output == "Scale") scaleViewport.setChecked();
-  if(settings.video.output == "Stretch") stretchViewport.setChecked();
+  if(settings.video.output == "居中") centerViewport.setChecked();
+  if(settings.video.output == "缩放") scaleViewport.setChecked();
+  if(settings.video.output == "拉伸") stretchViewport.setChecked();
   aspectCorrection.setText("Pixel Aspect Correction").setChecked(settings.video.aspectCorrection).onToggle([&] {
     settings.video.aspectCorrection = aspectCorrection.checked();
     emulator->configure("Video/AspectCorrection", settings.video.aspectCorrection);
@@ -55,7 +55,7 @@ auto Presentation::create() -> void {
     emulator->configure("Video/BlurEmulation", settings.video.blur);
   }).doToggle();
   /*filterMenu.setIcon(Icon::Emblem::Image).setText("Filter");
-  filterNone.setText("None").onActivate([&] { settings.video.filter = "None"; });
+  filterNone.setText("无").onActivate([&] { settings.video.filter = "None"; });
   filterScanlinesLight.setText("Scanlines (66%)").onActivate([&] { settings.video.filter = "Scanlines (66%)"; });
   filterScanlinesDark.setText("Scanlines (33%)").onActivate([&] { settings.video.filter = "Scanlines (33%)"; });
   filterScanlinesBlack.setText("Scanlines (0%)").onActivate([&] { settings.video.filter = "Scanlines (0%)"; });
@@ -85,8 +85,8 @@ auto Presentation::create() -> void {
   if(settings.video.filter == "NTSC (Composite)") filterNTSC_Composite.setChecked();
   if(settings.video.filter == "NTSC (S-Video)") filterNTSC_SVideo.setChecked();
   if(settings.video.filter == "NTSC (RGB)") filterNTSC_RGB.setChecked();*/
-  shaderMenu.setIcon(Icon::Emblem::Image).setText("Shader");
-  muteAudio.setText("Mute Audio").setChecked(settings.audio.mute).onToggle([&] {
+  shaderMenu.setIcon(Icon::Emblem::Image).setText("着色器");
+  muteAudio.setText("音频静音").setChecked(settings.audio.mute).onToggle([&] {
     settings.audio.mute = muteAudio.checked();
     if(settings.audio.mute) {
       program.mute |= Program::Mute::Always;
@@ -94,7 +94,7 @@ auto Presentation::create() -> void {
       program.mute &= ~Program::Mute::Always;
     }
   }).doToggle();  //set initial mute state flag
-  showStatusBar.setText("Show Status Bar").setChecked(settings.general.statusBar).onToggle([&] {
+  showStatusBar.setText("显示状态栏").setChecked(settings.general.statusBar).onToggle([&] {
     settings.general.statusBar = showStatusBar.checked();
     if(!showStatusBar.checked()) {
       layout.remove(statusLayout);
@@ -114,7 +114,7 @@ auto Presentation::create() -> void {
   driverSettings.setIcon(Icon::Place::Settings).setText("Drivers ...").onActivate([&] { settingsWindow.show(8); });
 
   toolsMenu.setText(tr("Tools")).setVisible(false);
-  saveState.setIcon(Icon::Media::Record).setText("Save State");
+  saveState.setIcon(Icon::Media::Record).setText("即时存档");
   for(uint index : range(QuickStates)) {
     MenuItem item{&saveState};
     item.setAttribute("name", {"Quick/Slot ", 1 + index});
@@ -122,7 +122,7 @@ auto Presentation::create() -> void {
     item.setText({"Slot ", 1 + index});
     item.onActivate([=] { program.saveState({"Quick/Slot ", 1 + index}); });
   }
-  loadState.setIcon(Icon::Media::Rewind).setText("Load State");
+  loadState.setIcon(Icon::Media::Rewind).setText("即时读档");
   for(uint index : range(QuickStates)) {
     MenuItem item{&loadState};
     item.setAttribute("name", {"Quick/Slot ", 1 + index});
@@ -159,10 +159,10 @@ auto Presentation::create() -> void {
   runMenu.setIcon(Icon::Media::Play).setText("Run Mode");
   runEmulation.setText("Normal").onActivate([&] {
   });
-  pauseEmulation.setText("Pause Emulation").onActivate([&] {
+  pauseEmulation.setText("暂停模拟").onActivate([&] {
     audio.clear();
   });
-  frameAdvance.setText("Frame Advance").onActivate([&] {
+  frameAdvance.setText("帧步进").onActivate([&] {
     audio.clear();
     program.frameAdvanceLock = true;
   });
@@ -171,7 +171,7 @@ auto Presentation::create() -> void {
   movieRecord.setIcon(Icon::Media::Record).setText("Record").onActivate([&] { program.movieRecord(false); });
   movieRecordFromBeginning.setIcon(Icon::Media::Record).setText("Reset and Record").onActivate([&] { program.movieRecord(true); });
   movieStop.setIcon(Icon::Media::Stop).setText("Stop").onActivate([&] { program.movieStop(); });
-  captureScreenshot.setIcon(Icon::Emblem::Image).setText("Capture Screenshot").onActivate([&] {
+  captureScreenshot.setIcon(Icon::Emblem::Image).setText("采集屏幕截图").onActivate([&] {
     program.captureScreenshot();
   });
   cheatFinder.setIcon(Icon::Action::Search).setText("Cheat Finder ...").onActivate([&] { toolsWindow.show(0); });
@@ -428,7 +428,7 @@ auto Presentation::updateSizeMenu() -> void {
   sizeMenu.append(MenuItem().setIcon(Icon::Action::Remove).setText("Shrink Window To Size").onActivate([&] {
     resizeWindow();
   }));
-  sizeMenu.append(MenuItem().setIcon(Icon::Place::Settings).setText("Center Window").onActivate([&] {
+  sizeMenu.append(MenuItem().setIcon(Icon::Place::Settings).setText("窗口居中").onActivate([&] {
     setAlignment(Alignment::Center);
   }));
 }
@@ -542,15 +542,15 @@ auto Presentation::updateShaders() -> void {
   Group shaders;
 
   MenuRadioItem none{&shaderMenu};
-  none.setText("None").onActivate([&] {
-    settings.video.shader = "None";
+  none.setText("无").onActivate([&] {
+    settings.video.shader = "无";
     program.updateVideoShader();
   });
   shaders.append(none);
 
   MenuRadioItem blur{&shaderMenu};
-  blur.setText("Blur").onActivate([&] {
-    settings.video.shader = "Blur";
+  blur.setText("模糊").onActivate([&] {
+    settings.video.shader = "模糊";
     program.updateVideoShader();
   });
   shaders.append(blur);
@@ -569,8 +569,8 @@ auto Presentation::updateShaders() -> void {
     }
   }
 
-  if(settings.video.shader == "None") none.setChecked();
-  if(settings.video.shader == "Blur") blur.setChecked();
+  if(settings.video.shader == "无") none.setChecked();
+  if(settings.video.shader == "模糊") blur.setChecked();
   for(auto item : shaders.objects<MenuRadioItem>()) {
     if(settings.video.shader == string{location, item.text(), ".shader/"}) {
       item.setChecked();

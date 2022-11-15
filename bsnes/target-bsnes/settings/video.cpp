@@ -2,10 +2,10 @@ auto VideoSettings::create() -> void {
   setCollapsible();
   setVisible(false);
 
-  colorAdjustmentLabel.setFont(Font().setBold()).setText("Color Adjustment");
+  colorAdjustmentLabel.setFont(Font().setBold()).setText("颜色调整");
   colorLayout.setSize({3, 3});
   colorLayout.column(0).setAlignment(1.0);
-  luminanceLabel.setText("Luminance:");
+  luminanceLabel.setText("亮度值:");
   luminanceValue.setAlignment(0.5);
   luminanceSlider.setLength(101).setPosition(settings.video.luminance).onChange([&] {
     string value = {luminanceSlider.position(), "%"};
@@ -13,7 +13,7 @@ auto VideoSettings::create() -> void {
     emulator->configure("Video/Luminance", settings.video.luminance);
     luminanceValue.setText(value);
   }).doChange();
-  saturationLabel.setText("Saturation:");
+  saturationLabel.setText("饱和度:");
   saturationValue.setAlignment(0.5);
   saturationSlider.setLength(201).setPosition(settings.video.saturation).onChange([&] {
     string value = {saturationSlider.position(), "%"};
@@ -21,7 +21,7 @@ auto VideoSettings::create() -> void {
     emulator->configure("Video/Saturation", settings.video.saturation);
     saturationValue.setText(value);
   }).doChange();
-  gammaLabel.setText("Gamma:");
+  gammaLabel.setText("伽玛值:");
   gammaValue.setAlignment(0.5);
   gammaSlider.setLength(101).setPosition(settings.video.gamma - 100).onChange([&] {
     string value = {100 + gammaSlider.position(), "%"};

@@ -2,7 +2,7 @@ auto EmulatorSettings::create() -> void {
   setCollapsible();
   setVisible(false);
 
-  optionsLabel.setText("Options").setFont(Font().setBold());
+  optionsLabel.setText("选项").setFont(Font().setBold());
   warnOnUnverifiedGames.setText("Warn when loading games that have not been verified").setChecked(settings.emulator.warnOnUnverifiedGames).onToggle([&] {
     settings.emulator.warnOnUnverifiedGames = warnOnUnverifiedGames.checked();
   });
@@ -29,7 +29,7 @@ auto EmulatorSettings::create() -> void {
     "Frame skipping allows a higher maximum fast forwarding frame rate."
   });
 
-  frameSkipAmount.append(ComboButtonItem().setText("None"));
+  frameSkipAmount.append(ComboButtonItem().setText("无"));
   frameSkipAmount.append(ComboButtonItem().setText("1 frame"));
   frameSkipAmount.append(ComboButtonItem().setText("2 frames"));
   frameSkipAmount.append(ComboButtonItem().setText("3 frames"));
@@ -48,7 +48,7 @@ auto EmulatorSettings::create() -> void {
     "Set the maximum speed when fast forwarding."
   });
 
-  limiterAmount.append(ComboButtonItem().setText("None"));
+  limiterAmount.append(ComboButtonItem().setText("无"));
   limiterAmount.append(ComboButtonItem().setText("200%"));
   limiterAmount.append(ComboButtonItem().setText("300%"));
   limiterAmount.append(ComboButtonItem().setText("400%"));
@@ -82,9 +82,9 @@ auto EmulatorSettings::create() -> void {
 
   fastForwardSpacer.setColor({192, 192, 192});
 
-  rewindLabel.setText("Rewind").setFont(Font().setBold());
+  rewindLabel.setText("倒带").setFont(Font().setBold());
 
-  rewindFrequencyLabel.setText("Frequency:");
+  rewindFrequencyLabel.setText("采样率:");
   rewindFrequencyOption.append(ComboButtonItem().setText("Disabled"));
   rewindFrequencyOption.append(ComboButtonItem().setText("Every 10 frames"));
   rewindFrequencyOption.append(ComboButtonItem().setText("Every 20 frames"));

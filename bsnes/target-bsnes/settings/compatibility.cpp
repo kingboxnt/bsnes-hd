@@ -3,7 +3,7 @@ auto CompatibilitySettings::create() -> void {
   setVisible(false);
 
   entropyLabel.setText("Entropy (randomization)").setFont(Font().setBold());
-  entropyNone.setText("None").setToolTip(
+  entropyNone.setText("无").setToolTip(
     "All memory and registers are initialized to constant values at startup.\n"
     "Use this for compatibility with very old demoscene homebrew games."
   ).onActivate([&] {

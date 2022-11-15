@@ -13,7 +13,7 @@ auto PathSettings::create() -> void {
       refreshPaths();
     }
   });
-  gamesReset.setText("Reset").onActivate([&] {
+  gamesReset.setText("重启").onActivate([&] {
     settings.path.games = "";
     refreshPaths();
   });
@@ -26,7 +26,7 @@ auto PathSettings::create() -> void {
       refreshPaths();
     }
   });
-  patchesReset.setText("Reset").onActivate([&] {
+  patchesReset.setText("重启").onActivate([&] {
     settings.path.patches = "";
     refreshPaths();
   });
@@ -39,7 +39,7 @@ auto PathSettings::create() -> void {
       refreshPaths();
     }
   });
-  savesReset.setText("Reset").onActivate([&] {
+  savesReset.setText("重启").onActivate([&] {
     settings.path.saves = "";
     refreshPaths();
   });
@@ -52,7 +52,7 @@ auto PathSettings::create() -> void {
       refreshPaths();
     }
   });
-  cheatsReset.setText("Reset").onActivate([&] {
+  cheatsReset.setText("重启").onActivate([&] {
     settings.path.cheats = "";
     refreshPaths();
   });
@@ -65,7 +65,7 @@ auto PathSettings::create() -> void {
       refreshPaths();
     }
   });
-  statesReset.setText("Reset").onActivate([&] {
+  statesReset.setText("重启").onActivate([&] {
     settings.path.states = "";
     refreshPaths();
   });
@@ -78,7 +78,7 @@ auto PathSettings::create() -> void {
       refreshPaths();
     }
   });
-  screenshotsReset.setText("Reset").onActivate([&] {
+  screenshotsReset.setText("重启").onActivate([&] {
     settings.path.screenshots = "";
     refreshPaths();
   });

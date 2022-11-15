@@ -12,7 +12,7 @@ auto Program::path(string type, string location, string extension) -> string {
     if(auto path = settings.path.patches) pathname = path;
   }
 
-  if(type == "Saves") {
+  if(type == "存档") {
     if(auto path = settings.path.saves) pathname = path;
   }
 
@@ -24,7 +24,7 @@ auto Program::path(string type, string location, string extension) -> string {
     if(auto path = settings.path.states) pathname = path;
   }
 
-  if(type == "Screenshots") {
+  if(type == "屏幕截图") {
     if(auto path = settings.path.screenshots) pathname = path;
   }
 
@@ -64,7 +64,7 @@ auto Program::screenshotPath() -> string {
     location = {location, Emulator::Name, "/screenshots/"};
     directory::create(location);
   } else {
-    location = {path("Screenshots", location), "-"};
+    location = {path("屏幕截图", location), "-"};
   }
   for(uint n : range(1, 1000)) {
     string filename = {location, pad(n, 3, '0'), ".bmp"};

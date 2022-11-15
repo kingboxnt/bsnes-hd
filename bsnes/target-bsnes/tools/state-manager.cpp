@@ -70,7 +70,7 @@ auto StateManager::create() -> void {
   statePreviewSeparator1.setColor({192, 192, 192});
   statePreviewLabel.setFont(Font().setBold()).setText("Preview");
   statePreviewSeparator2.setColor({192, 192, 192});
-  loadButton.setText("Load").onActivate([&] {
+  loadButton.setText("载入").onActivate([&] {
     if(auto item = stateList.selected()) program.loadState(item.attribute("name"));
   });
   saveButton.setText("Save").onActivate([&] {
@@ -93,7 +93,7 @@ auto StateManager::type() const -> string {
 
 auto StateManager::loadStates() -> void {
   stateList.reset();
-  stateList.append(TableViewColumn().setText("Name").setSorting(Sort::Ascending).setExpandable());
+  stateList.append(TableViewColumn().setText("名称").setSorting(Sort::Ascending).setExpandable());
   stateList.append(TableViewColumn().setText("Date").setForegroundColor({160, 160, 160}));
   auto type = this->type();
   for(auto& state : program.availableStates(type)) {

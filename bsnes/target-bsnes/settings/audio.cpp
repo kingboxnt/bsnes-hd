@@ -2,7 +2,7 @@ auto AudioSettings::create() -> void {
   setCollapsible();
   setVisible(false);
 
-  effectsLabel.setFont(Font().setBold()).setText("Effects");
+  effectsLabel.setFont(Font().setBold()).setText("效果");
   effectsLayout.setSize({3, 3});
   effectsLayout.column(0).setAlignment(1.0);
   skewLabel.setText("Skew:").setToolTip(
@@ -22,7 +22,7 @@ auto AudioSettings::create() -> void {
     skewValue.setText(value);
     if(audio.driver() != "None") program.updateAudioFrequency();
   }).doChange();
-  volumeLabel.setText("Volume:").setToolTip(
+  volumeLabel.setText("音量:").setToolTip(
     "Adjusts the audio output volume.\n\n"
     "You should not use values above 100%, if possible!\n"
     "If you do, audio clipping distortion can occur."
@@ -34,7 +34,7 @@ auto AudioSettings::create() -> void {
     volumeValue.setText(value);
     program.updateAudioEffects();
   }).doChange();
-  balanceLabel.setText("Balance:").setToolTip(
+  balanceLabel.setText("平衡:").setToolTip(
     "Pans audio to the left (lower values) or right (higher values.)\n\n"
     "50% (centered) is the recommended setting."
   );

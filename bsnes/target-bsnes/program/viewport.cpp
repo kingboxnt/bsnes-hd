@@ -14,7 +14,7 @@ auto Program::viewportSize(uint& width, uint& height, uint scale) -> void {
   uint outputWidth = videoWidth * multiplier;
   uint outputHeight = videoHeight * multiplier;
 
-  if(multiplier == 0 || settings.video.output == "Scale") {
+  if(multiplier == 0 || settings.video.output == "缩放") {
     float multiplierX = (float)viewportWidth / (float)videoWidth;
     float multiplierY = (float)viewportHeight / (float)videoHeight;
     float multiplier = min(multiplierX, multiplierY);
@@ -23,7 +23,7 @@ auto Program::viewportSize(uint& width, uint& height, uint scale) -> void {
     outputHeight = videoHeight * multiplier;
   }
 
-  if(settings.video.output == "Stretch") {
+  if(settings.video.output == "拉伸") {
     outputWidth = viewportWidth;
     outputHeight = viewportHeight;
   }

@@ -92,31 +92,31 @@ auto Program::openRomSuperFamicom(string name, vfs::file::mode mode) -> shared_p
   }
 
   if(name == "save.ram") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".srm"), mode);
   }
 
   if(name == "download.ram") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".psr"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".psr"), mode);
   }
 
   if(name == "time.rtc") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".rtc"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".rtc"), mode);
   }
 
   if(name == "arm6.data.ram") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".srm"), mode);
   }
 
   if(name == "hg51bs169.data.ram") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".srm"), mode);
   }
 
   if(name == "upd7725.data.ram") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".srm"), mode);
   }
 
   if(name == "upd96050.data.ram") {
-    return vfs::fs::file::open(path("Saves", superFamicom.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", superFamicom.location, ".srm"), mode);
   }
 
   if(name == "msu1/data.rom") {
@@ -137,11 +137,11 @@ auto Program::openRomGameBoy(string name, vfs::file::mode mode) -> shared_pointe
   }
 
   if(name == "save.ram") {
-    return vfs::fs::file::open(path("Saves", gameBoy.location, ".sav"), mode);
+    return vfs::fs::file::open(path("存档", gameBoy.location, ".sav"), mode);
   }
 
   if(name == "time.rtc") {
-    return vfs::fs::file::open(path("Saves", gameBoy.location, ".rtc"), mode);
+    return vfs::fs::file::open(path("存档", gameBoy.location, ".rtc"), mode);
   }
 
   return {};
@@ -166,7 +166,7 @@ auto Program::openRomSufamiTurboA(string name, vfs::file::mode mode) -> shared_p
   }
 
   if(name == "save.ram") {
-    return vfs::fs::file::open(path("Saves", sufamiTurboA.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", sufamiTurboA.location, ".srm"), mode);
   }
 
   return {};
@@ -178,7 +178,7 @@ auto Program::openRomSufamiTurboB(string name, vfs::file::mode mode) -> shared_p
   }
 
   if(name == "save.ram") {
-    return vfs::fs::file::open(path("Saves", sufamiTurboB.location, ".srm"), mode);
+    return vfs::fs::file::open(path("存档", sufamiTurboB.location, ".srm"), mode);
   }
 
   return {};

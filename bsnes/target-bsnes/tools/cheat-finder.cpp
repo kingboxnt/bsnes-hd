@@ -39,7 +39,7 @@ auto CheatFinder::create() -> void {
   searchSpan.append(ComboButtonItem().setText("WRAM"));
   searchSpan.append(ComboButtonItem().setText("All"));
   searchScan.setText("Scan").onActivate([&] { eventScan(); });
-  searchClear.setText("Clear").onActivate([&] { eventClear(); });
+  searchClear.setText("清除").onActivate([&] { eventClear(); });
 
   refresh();
 }

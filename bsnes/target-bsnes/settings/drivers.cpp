@@ -2,19 +2,19 @@ auto DriverSettings::create() -> void {
   setCollapsible();
   setVisible(false);
 
-  videoLabel.setText("Video").setFont(Font().setBold());
-  videoDriverLabel.setText("Driver:");
+  videoLabel.setText("视频").setFont(Font().setBold());
+  videoDriverLabel.setText("驱动:");
   videoDriverOption.onChange([&] {
-    videoDriverUpdate.setText(videoDriverOption.selected().text() != video.driver() ? "Change" : "Reload");
+    videoDriverUpdate.setText(videoDriverOption.selected().text() != video.driver() ? "Change" : "重启");
   });
   videoDriverUpdate.setText("Change").onActivate([&] { videoDriverChange(); });
-  videoMonitorLabel.setText("Fullscreen monitor:").setToolTip(
+  videoMonitorLabel.setText("全屏显示:").setToolTip(
     "Sets which monitor video is sent to in fullscreen mode."
   );
   videoMonitorOption.onChange([&] { videoMonitorChange(); });
-  videoFormatLabel.setText("Format:");
+  videoFormatLabel.setText("格式:");
   videoFormatOption.onChange([&] { videoFormatChange(); });
-  videoExclusiveToggle.setText("Exclusive mode").setToolTip(
+  videoExclusiveToggle.setText("独占模式").setToolTip(
     "Causes fullscreen mode to take over all monitors.\n"
     "This allows adaptive sync to work better and reduces input latency.\n"
     "However, multi-monitor users should turn this option off.\n"
@@ -23,7 +23,7 @@ auto DriverSettings::create() -> void {
     settings.video.exclusive = videoExclusiveToggle.checked();
     program.updateVideoExclusive();
   });
-  videoBlockingToggle.setText("Synchronize").setToolTip(
+  videoBlockingToggle.setText("同步").setToolTip(
     "Waits for the video card to be ready before rendering frames.\n"
     "Eliminates dropped or duplicated frames; but can distort audio.\n\n"
     "With this option, it's recommended to disable audio sync,\n"
@@ -34,7 +34,7 @@ auto DriverSettings::create() -> void {
     program.updateVideoBlocking();
     presentation.speedMenu.setEnabled(!videoBlockingToggle.checked() && audioBlockingToggle.checked());
   });
-  videoFlushToggle.setText("GPU sync").setToolTip({
+  videoFlushToggle.setText("GPU 同步").setToolTip({
     "(OpenGL driver only)\n\n"
     "Causes the GPU to wait until frames are fully rendered.\n"
     "In the best case, this can remove up to one frame of input lag.\n"
@@ -46,19 +46,19 @@ auto DriverSettings::create() -> void {
   });
   videoSpacer.setColor({192, 192, 192});
 
-  audioLabel.setText("Audio").setFont(Font().setBold());
-  audioDriverLabel.setText("Driver:");
+  audioLabel.setText("音频").setFont(Font().setBold());
+  audioDriverLabel.setText("驱动:");
   audioDriverOption.onChange([&] {
-    audioDriverUpdate.setText(audioDriverOption.selected().text() != audio.driver() ? "Change" : "Reload");
+    audioDriverUpdate.setText(audioDriverOption.selected().text() != audio.driver() ? "Change" : "重启");
   });
   audioDriverUpdate.setText("Change").onActivate([&] { audioDriverChange(); });
-  audioDeviceLabel.setText("Output device:");
+  audioDeviceLabel.setText("输出设备:");
   audioDeviceOption.onChange([&] { audioDeviceChange(); });
-  audioFrequencyLabel.setText("Frequency:");
+  audioFrequencyLabel.setText("采样率:");
   audioFrequencyOption.onChange([&] { audioFrequencyChange(); });
-  audioLatencyLabel.setText("Latency:");
+  audioLatencyLabel.setText("延迟:");
   audioLatencyOption.onChange([&] { audioLatencyChange(); });
-  audioExclusiveToggle.setText("Exclusive mode").setToolTip(
+  audioExclusiveToggle.setText("独占模式").setToolTip(
     "(WASAPI driver only)\n\n"
     "Acquires exclusive control of the sound card device.\n"
     "This can significantly reduce audio latency.\n"
@@ -67,7 +67,7 @@ auto DriverSettings::create() -> void {
     settings.audio.exclusive = audioExclusiveToggle.checked();
     program.updateAudioExclusive();
   });
-  audioBlockingToggle.setText("Synchronize").setToolTip(
+  audioBlockingToggle.setText("同步").setToolTip(
     "Waits for the audio card to be ready before outputting samples.\n"
     "Eliminates audio distortio; but can distort video.\n\n"
     "With this option, it's recommended to disable video sync.\n"
@@ -77,7 +77,7 @@ auto DriverSettings::create() -> void {
     program.updateAudioBlocking();
     presentation.speedMenu.setEnabled(!videoBlockingToggle.checked() && audioBlockingToggle.checked());
   });
-  audioDynamicToggle.setText("Dynamic rate").setToolTip(
+  audioDynamicToggle.setText("动态位率").setToolTip(
     "(OSS, XAudio2, waveOut drivers only)\n\n"
     "Dynamically adjusts the audio frequency by tiny amounts.\n"
     "Use this with video sync enabled, and audio sync disabled.\n\n"
@@ -90,10 +90,10 @@ auto DriverSettings::create() -> void {
   });
   audioSpacer.setColor({192, 192, 192});
 
-  inputLabel.setText("Input").setFont(Font().setBold());
-  inputDriverLabel.setText("Driver:");
+  inputLabel.setText("输入").setFont(Font().setBold());
+  inputDriverLabel.setText("驱动:");
   inputDriverOption.onChange([&] {
-    inputDriverUpdate.setText(inputDriverOption.selected().text() != input.driver() ? "Change" : "Reload");
+    inputDriverUpdate.setText(inputDriverOption.selected().text() != input.driver() ? "Change" : "重启");
   });
   inputDriverUpdate.setText("Change").setToolTip(
     "A driver reload can be used to detect hotplugged devices.\n"

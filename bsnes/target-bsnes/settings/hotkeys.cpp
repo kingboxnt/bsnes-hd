@@ -29,11 +29,11 @@ auto HotkeySettings::create() -> void {
   if(settings.input.hotkey.logic == "and") logicAND.setChecked().doActivate();
   if(settings.input.hotkey.logic == "or") logicOR.setChecked().doActivate();
   inputSink.setFocusable();
-  assignButton.setText("Assign").onActivate([&] {
+  assignButton.setText("分配").onActivate([&] {
     clearButton.doActivate();
     assignMapping(mappingList.selected().cell(0));
   });
-  clearButton.setText("Clear").onActivate([&] {
+  clearButton.setText("清除").onActivate([&] {
     cancelMapping();
     for(auto mapping : mappingList.batched()) {
       auto& hotkey = inputManager.hotkeys[mapping.offset()];
@@ -47,9 +47,9 @@ auto HotkeySettings::create() -> void {
 
 auto HotkeySettings::reloadMappings() -> void {
   mappingList.reset();
-  mappingList.append(TableViewColumn().setText("Name"));
+  mappingList.append(TableViewColumn().setText("名称"));
   for(uint index : range(BindingLimit)) {
-    mappingList.append(TableViewColumn().setText({"Mapping #", 1 + index}).setExpandable());
+    mappingList.append(TableViewColumn().setText({"映射 #", 1 + index}).setExpandable());
   }
   for(auto& hotkey : inputManager.hotkeys) {
     TableViewItem item{&mappingList};
@@ -81,7 +81,7 @@ auto HotkeySettings::assignMapping(TableViewCell cell) -> void {
   for(auto mapping : mappingList.batched()) {
     activeMapping = inputManager.hotkeys[mapping.offset()];
     activeBinding = max(0, (int)cell.offset() - 1);
-    mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText("(assign ...)");
+    mappingList.item(mapping.offset()).cell(1 + activeBinding).setIcon(Icon::Go::Right).setText("(指定 ...)");
     settingsWindow.statusBar.setText({"Press a key or button for mapping# ", 1 + activeBinding, " [", activeMapping->name, "] ..."});
     settingsWindow.setDismissable(false);
     inputSink.setFocused();
